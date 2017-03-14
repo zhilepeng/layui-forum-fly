@@ -41,88 +41,92 @@
   </div>
 </div>
 
-<div class="main layui-clear">
-
-  <h2 class="page-title">用心中心</h2>
-
-  <div class="wrap">
-    <div class="content">
-
-      <div class="fly-msg">您的邮箱尚未验证，这比较影响您的帐号安全，<a href="/user/activate/">立即去激活？</a></div>
-
-      <div class="fly-tab user-tab">
-        <span id="LAY-mine">
-          <a href="javascript:;" class="tab-this" type="mine-jie">我的求解（<cite>0</cite>）</a>
-          <a href="message.html">我的消息</a>
-          <a href="home.html">我的主页</a>
-        </span>
-      </div>
-      <div class="user-mine">
-        <ul class="mine-view jie-row" style="display:block;">
-          <li class="fly-none"><a>此处消息由Ajax读取，见mods/user.js</a></li>
-        </ul>
-      </div>
-      <div id="LAY-page"></div>
-    </div>
-  </div>
-  
-  <div class="edge">
-    <div class="user-about">
-      <a href="set.html#avatar" title="修改头像">
-        <img class="user-avatar" src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0">
+<div class="main fly-user-main layui-clear">
+  <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+    <li class="layui-nav-item">
+      <a href="home.html">
+        <i class="layui-icon">&#xe609;</i>
+        我的主页
       </a>
-      <p>
-        <span style="color:#333">贤心</span>
-        <span style="color:#c00;">超级管理员</span>
-        <!-- <span style="color:#5FB878;">管理员</span> -->
-      </p>
-      <p>
-        <span>加入时间：2016-10-26</span>
-        <span>
-          飞吻：<em style="color:#FF7200">5200</em>
-        </span>
-      </p>
-      <p>
-        <span>城市：杭州</span>
-        <span>性别：男</span>
-      </p>
-      
-      <div class="user-looklog" style="padding-bottom:200px;">
-        <h3>最近访客</h3>
-        <span>
-          <a href="/u/168">
-            <img src="http://fly.layui.com/avatar/168.jpg">
-            <cite>贤心</cite>
-            <i>刚刚</i>
-          </a>
-          <a href="/u/336">
-            <img src="http://res.layui.com/images/fly/avatar/00.jpg">
-            <cite>Fly官方</cite>
-            <i>5分钟前</i>
-          </a>
-          <a href="/u/26880">
-            <img src="http://res.layui.com/images/fly/avatar/5.jpg">
-            <cite>小付</cite>
-            <i>1小时前</i>
-          </a>
-          <a href="/u/11928">
-            <img src="http://fly.layui.com/avatar/11928.jpg">
-            <cite>第一把菜刀</cite>
-            <i>3天前</i>
-          </a>
-        </span>
+    </li>
+    <li class="layui-nav-item layui-this">
+      <a href="index.html">
+        <i class="layui-icon">&#xe612;</i>
+        用户中心
+      </a>
+    </li>
+    <li class="layui-nav-item">
+      <a href="set.html">
+        <i class="layui-icon">&#xe620;</i>
+        基本设置
+      </a>
+    </li>
+    <li class="layui-nav-item">
+      <a href="message.html">
+        <i class="layui-icon">&#xe611;</i>
+        我的消息
+      </a>
+    </li>
+  </ul>
+  
+  <div class="site-tree-mobile layui-hide">
+    <i class="layui-icon">&#xe602;</i>
+  </div>
+  <div class="site-mobile-shade"></div>
+  
+  <div class="fly-panel fly-panel-user" pad20>
+    <!--
+    <div class="fly-msg" style="margin-top: 15px;">
+      您的邮箱尚未验证，这比较影响您的帐号安全，<a href="activate.html">立即去激活？</a>
+    </div>
+    -->
+    <div class="layui-tab layui-tab-brief" lay-filter="user">
+      <ul class="layui-tab-title" id="LAY_mine">
+        <li data-type="mine-jie" lay-id="index" class="layui-this">我发的帖（<span>89</span>）</li>
+        <li data-type="collection" data-url="/collection/find/" lay-id="collection">我收藏的帖（<span>16</span>）</li>
+      </ul>
+      <div class="layui-tab-content" style="padding: 20px 0;">
+        <div class="layui-tab-item layui-show">
+          <ul class="mine-view jie-row">
+            <li>
+              <a class="jie-title" href="/jie/8116.html" target="_blank">LayIM 3.5.0 发布，移动端版本大更新（带演示图）</a>
+              <i>2017/3/14 上午8:30:00</i>
+              <a class="mine-edit" href="/jie/edit/8116">编辑</a>
+              <em>661阅/10答</em>
+            </li>
+            <li>
+              <a class="jie-title" href="/jie/8116.html" target="_blank">LayIM 3.5.0 发布，移动端版本大更新（带演示图）</a>
+              <i>2017/3/14 上午8:30:00</i>
+              <a class="mine-edit" href="/jie/edit/8116">编辑</a>
+              <em>661阅/10答</em>
+            </li>
+            <li>
+              <a class="jie-title" href="/jie/8116.html" target="_blank">LayIM 3.5.0 发布，移动端版本大更新（带演示图）</a>
+              <i>2017/3/14 上午8:30:00</i>
+              <a class="mine-edit" href="/jie/edit/8116">编辑</a>
+              <em>661阅/10答</em>
+            </li>
+          </ul>
+          <div id="LAY_page"></div>
+        </div>
+        <div class="layui-tab-item">
+          <ul class="mine-view jie-row">
+            <li>
+              <a class="jie-title" href="http://fly.layui.com/jie/5366.html" target="_blank">layui 常见问题的处理和实用干货集锦</a>
+              <i>收藏于23小时前</i>  </li>
+          </ul>
+          <div id="LAY_page1"></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="footer">
-  <p><a href="http://fly.layui.com/">Fly社区</a> 2016 &copy; <a href="http://www.layui.com/">layui.com</a></p>
+  <p><a href="http://fly.layui.com/">Fly社区</a> 2017 &copy; <a href="http://www.layui.com/">layui.com</a></p>
   <p>
     <a href="http://fly.layui.com/auth/get" target="_blank">产品授权</a>
-    <a href="http://fly.layui.com/jie/3147.html" target="_blank">VIP说明</a>
-    <a href="http://www.layui.com/" target="_blank">商务合作</a>
-    <a href="http://weibo.com/SentsinXu" target="_blank" rel="nofollow">微博</a>
+    <a href="http://fly.layui.com/jie/4536.html" target="_blank">获取Fly社区模版</a>
     <a href="http://fly.layui.com/jie/2461.html" target="_blank">微信公众号</a>
   </p>
 </div>
@@ -137,7 +141,7 @@ layui.cache.user = {
   ,sex: '男'
 };
 layui.config({
-  version: "1.0.0"
+  version: "2.0.0"
   ,base: '../../res/mods/'
 }).extend({
   fly: 'index'

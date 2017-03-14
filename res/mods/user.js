@@ -136,31 +136,15 @@ layui.define(['laypage', 'fly', 'element'], function(exports){
     });
   }
 
-  //显示当前tab
-  gather.tabshow = function(index, hash){
-    var child = dom.mine.children();
-    if(hash){
-      child.each(function(i, item){
-        if($(this).attr('hash') === hash){
-          index = i;
-          return false;
-        }
-      });
-    }
-    element.tabChange('user', index);
-  };
-
-  if(location.hash){
-    dom.mine[0] && gather.tabshow(0, location.hash.replace(/^#/, ''));
-  }
-
-  element.on('tab(user)', function(){
-    var othis = $(this), hash = othis.attr('hash');
-    if(hash){
-      location.hash = hash;
-    }
+  //Hash地址的定位
+  var layid = location.hash.replace(/^#/, '');
+  element.tabChange('user', layid);
+  
+  element.on('tab(user)', function(elem){
+    location.hash = ''+ $(this).attr('lay-id');
   });
-
+  
+  
   //根据ip获取城市
   if($('#LAY_city').val() === ''){
     $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js', function(){
@@ -257,24 +241,26 @@ layui.define(['laypage', 'fly', 'element'], function(exports){
     }
     
     
-    fly.json('/message/find/', {}, function(res){
-      var html = laytpl(tpl).render(res);
-      dom.minemsg.html(html);
-      if(res.rows.length > 0){
-        delAll.removeClass('layui-hide');
-      }
-    });
+    // fly.json('/message/find/', {}, function(res){
+      // var html = laytpl(tpl).render(res);
+      // dom.minemsg.html(html);
+      // if(res.rows.length > 0){
+        // delAll.removeClass('layui-hide');
+      // }
+    // });
     
     //阅读后删除
     dom.minemsg.on('click', '.mine-msg li .fly-delete', function(){
       var othis = $(this).parents('li'), id = othis.data('id');
-      fly.json('/message/remove/', {
-        id: id
-      }, function(res){
-        if(res.status === 0){
-          othis.remove();
-          delEnd();
-        }
+      layer.confirm('确定删除该消息吗？', function(index){
+        fly.json('/message/remove/', {
+          id: id
+        }, function(res){
+          if(res.status === 0){
+            othis.remove();
+            delEnd();
+          }
+        });
       });
     });
 
