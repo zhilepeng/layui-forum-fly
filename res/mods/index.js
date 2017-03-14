@@ -34,7 +34,7 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util'], function(exports){
   };
   
   var gather = {
-    
+     
     //Ajax
     json: function(url, data, success, options){
       var that = this;
@@ -55,6 +55,25 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util'], function(exports){
           options.error || layer.msg('请求异常，请重试', {shift: 6});
         }
       });
+    }
+
+    //将普通对象按某个key排序
+    ,sort: function(data, key, asc){
+      var obj = JSON.parse(JSON.stringify(data));
+      var compare = function (obj1, obj2) { 
+        var value1 = obj1[key]; 
+        var value2 = obj2[key]; 
+        if (value2 < value1) { 
+          return -1; 
+        } else if (value2 > value1) { 
+          return 1; 
+        } else { 
+          return 0; 
+        } 
+      };
+      obj.sort(compare);
+      if(asc) obj.reverse();
+      return obj;
     }
 
     //计算字符长度
@@ -161,6 +180,7 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util'], function(exports){
             ,formType: 2
             ,maxlength: 10000
             ,shade: false
+            ,area: ['830px', '390px']
           }, function(val, index, elem){
             layui.focusInsert(editor[0], '[pre]\n'+ val + '\n[/pre]');
             layer.close(index);
@@ -233,14 +253,14 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util'], function(exports){
     //新消息通知
     ,newmsg: function(){
       if(layui.cache.user.uid !== -1){
-        gather.json('/api/msg-count', {
+        gather.json('/message/nums/', {
           _: new Date().getTime()
         }, function(res){
           if(res.status === 0 && res.count > 0){
             var msg = $('<a class="nav-message" href="javascript:;" title="您有'+ res.count +'条未阅读的消息">'+ res.count +'</a>');
             $('.nav-user').append(msg);
             msg.on('click', function(){
-              gather.json('/api/msg-read', {}, function(res){
+              gather.json('/message/read', {}, function(res){
                 if(res.status === 0){
                   location.href = '/user/message/';
                 }
@@ -255,12 +275,14 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util'], function(exports){
     ,cookie: function(e,o,t){
       e=e||"";var n,i,r,a,c,p,s,d,u;if("undefined"==typeof o){if(p=null,document.cookie&&""!=document.cookie)for(s=document.cookie.split(";"),d=0;d<s.length;d++)if(u=$.trim(s[d]),u.substring(0,e.length+1)==e+"="){p=decodeURIComponent(u.substring(e.length+1));break}return p}t=t||{},null===o&&(o="",t.expires=-1),n="",t.expires&&("number"==typeof t.expires||t.expires.toUTCString)&&("number"==typeof t.expires?(i=new Date,i.setTime(i.getTime()+864e5*t.expires)):i=t.expires,n="; expires="+i.toUTCString()),r=t.path?"; path="+t.path:"",a=t.domain?"; domain="+t.domain:"",c=t.secure?"; secure":"",document.cookie=[e,"=",encodeURIComponent(o),n,r,a,c].join("");
     }
+    
   };
 
   //相册
   layer.photos({
     photos: '.photos'
     ,zIndex: 9999999999
+    ,anim: -1
   });
 
 
@@ -331,19 +353,20 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util'], function(exports){
   //加载特定模块
   if(layui.cache.page && layui.cache.page !== 'index'){
     var extend = {};
+    extend[layui.cache.page] = layui.cache.page;
+    layui.extend(extend);
     layui.use(layui.cache.page);
   }
   
   //加载IM
   if(!device.android && !device.ios){
-    // layui.use('im');
+    //layui.use('im');
   }
 
   //加载编辑器
   gather.layEditor({
     elem: '.fly-editor'
   });
-  
 
   //右下角固定Bar
   util.fixbar({
@@ -354,6 +377,25 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util'], function(exports){
       }
     }
   });
+
+  //手机设备的简单适配
+  var treeMobile = $('.site-tree-mobile')
+  ,shadeMobile = $('.site-mobile-shade')
+
+  treeMobile.on('click', function(){
+    $('body').addClass('site-mobile');
+  });
+
+  shadeMobile.on('click', function(){
+    $('body').removeClass('site-mobile');
+  });
+
+  //图片懒加载
+  /*
+  layui.use('flow', function(flow){
+    flow.lazyimg();
+  });*/
+  
 
   exports('fly', gather);
 

@@ -1,6 +1,7 @@
-/*! 全屏风格 */
+/*! 默认风格 */
 
 html body{margin-top:0; margin-left: 136px;}
+html .fly-full{margin-top: 0;}
 
 .main{width:auto; margin:15px 24px 15px 24px;}
 .content{margin-right: 360px;}

@@ -80,11 +80,39 @@ layui.define(['laypage', 'fly'], function(exports){
         }
       });
     }
+
+    //收藏
+    ,collect: function(div){
+      var othis = $(this), type = othis.data('type');
+      fly.json('/collection/'+ type +'/', {
+        cid: div.data('id')
+      }, function(res){
+        if(type === 'add'){
+          othis.data('type', 'remove').html('取消收藏').addClass('layui-btn-danger');
+        } else if(type === 'remove'){
+          othis.data('type', 'add').html('收藏').removeClass('layui-btn-danger');
+        }
+      });
+    }
   };
-  $('.jie-admin').on('click', function(){
+
+  $('body').on('click', '.jie-admin', function(){
     var othis = $(this), type = othis.attr('type');
     gather.jieAdmin[type].call(this, othis.parent());
   });
+
+  //异步渲染
+  var asyncRender = function(){
+    var div = $('.fly-detail-hint'), jieAdmin = $('#LAY_jieAdmin');
+    //查询帖子是否收藏
+    if(jieAdmin[0] && layui.cache.user.uid != -1){
+      fly.json('/collection/find/', {
+        cid: div.data('id')
+      }, function(res){
+        jieAdmin.append('<span class="layui-btn layui-btn-mini jie-admin '+ (res.data.collection ? 'layui-btn-danger' : '') +'" type="collect" data-type="'+ (res.data.collection ? 'remove' : 'add') +'">'+ (res.data.collection ? '取消收藏' : '收藏') +'</span>');
+      });
+    }
+  }();
 
   //解答操作
   gather.jiedaActive = {
