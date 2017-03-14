@@ -5,6 +5,9 @@
       <a {{d.page === 'jie' ? 'class="nav-this"' : ''}} href="/jie/">
         <i class="iconfont icon-wenda"></i>问答
       </a>
+      <a {{d.page === 'case' ? 'class="nav-this"' : ''}} href="/case/2017/">
+        <i class="iconfont icon-iconmingxinganli" style="top: 2px;"></i>案例
+      </a>
       <a href="http://www.layui.com/">
         <i class="iconfont icon-ui"></i>框架
       </a>
@@ -21,7 +24,7 @@
         {{# } }}
         <cite>{{user.username}}</cite>
         {{# if(user.rmb){ }}
-        <i>VIP{{lay.util.vip(user.rmb)}}</i>
+        <i>{{ lay.util.vip(user.rmb) > 99 ? 'SVIP' : ('VIP' + lay.util.vip(user.rmb))}}</i>
         {{# } }}
       </a>
       <div class="nav">

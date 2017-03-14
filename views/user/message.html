@@ -6,21 +6,26 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>我的消息 - {{lay.base.name}}</title>
-{{ include ../link }}
+{{ include ../common/link }}
 </head>
 <body>
 
-{{ include ../header }}
+{{ include ../common/header }}
 
-<div class="main layui-clear">
-    <h2 class="page-title">
-      我的消息
-      <button class="layui-btn layui-btn-small layui-hide" id="LAY_delallmsg" style="position: absolute; right: 0;">清空全部消息</button>
-    </h2>
-    <div id="LAY_minemsg"></div>
+<div class="main fly-user-main layui-clear">
+
+  {{ include ../common/user-nav }}
+
+  <div class="fly-panel fly-panel-user" pad20>
+	  <div class="layui-tab layui-tab-brief" lay-filter="user" id="LAY_msg" style="margin-top: 15px;">
+	    <button class="layui-btn layui-btn-danger layui-hide" id="LAY_delallmsg">清空全部消息</button>
+	    <div id="LAY_minemsg" style="margin-top: 10px;"></div>
+	  </div>
+	</div>
+
 </div>
 
-{{ include ../footer }}
+{{ include ../common/footer }}
 
 </body>
 </html>
