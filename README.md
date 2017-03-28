@@ -4,7 +4,7 @@
 ```
 ├─html 可直接预览的模版文件
 │  ├─jie
-│  ├─public
+│  ├─common
 │  └─user
 ├─res 静态资源
 │  ├─css
@@ -15,7 +15,7 @@
 │  └─mods 模版业务模块
 └─views 动态模版参考（NodeJS端）
     ├─jie
-    ├─public
+    ├─common
     └─user
 ```
 
