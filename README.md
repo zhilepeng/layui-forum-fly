@@ -35,5 +35,5 @@ MIT License
 
 # 社区相关
 * [Fly社区](http://fly.layui.com/)
-* [码云](http://git.oschina.net/sentsin/fly)
+* [码云](https://git.oschina.net/sentsin/fly)
 * [GitHub](https://github.com/layui/fly)
