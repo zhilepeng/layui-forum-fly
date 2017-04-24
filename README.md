@@ -12,7 +12,7 @@
 │  │  ├─avatar
 │  │  └─other
 │  ├─layui
-│  └─mods 模版业务模块
+│  └─mods 模板业务模块
 └─views 动态模版参考（NodeJS端）
     ├─jie
     ├─common
