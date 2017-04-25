@@ -13,7 +13,7 @@
 │  │  └─other
 │  ├─layui
 │  └─mods 模板业务模块
-└─views 动态模版参考（NodeJS端）
+└─views 动态模板参考（NodeJS端）
     ├─jie
     ├─common
     └─user
