@@ -12,7 +12,7 @@
 
 {{ include ../common/header }}
 
-<div class="main fly-user-main layui-clear">
+<div class="layui-container fly-marginTop fly-user-main">
 
   {{ include ../common/user-nav }}
   
@@ -25,8 +25,8 @@
       {{# } }}
 
       <ul class="layui-tab-title" id="LAY_mine">
-        <li data-type="mine-jie" hash="index" class="layui-this">我发的帖（<span>0</span>）</li>
-        <li data-type="collection" data-url="/collection/find/" hash="collection">我收藏的帖（<span>0</span>）</li>
+        <li data-type="mine-jie" lay-id="index" class="layui-this">我发的帖（<span>0</span>）</li>
+        <li data-type="collection" data-url="/collection/find/" lay-id="collection">我收藏的帖（<span>0</span>）</li>
       </ul>
       <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
         <div class="layui-tab-item layui-show">

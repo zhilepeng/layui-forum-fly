@@ -29,6 +29,14 @@
       产品授权
     </a>
   </li>
+  {{# if([1, 6822].indexOf(user.id) !== -1){ }}
+  <li class="layui-nav-item {{ d.pageType === 'cooperation' ? 'layui-this' : '' }}">
+    <a href="/cooperation/">
+      <i class="layui-icon">&#xe629;</i>
+      合作平台
+    </a>
+  </li>
+  {{# } }}
 </ul>
 
 <div class="site-tree-mobile layui-hide">
